@@ -38,10 +38,7 @@ public class ExaminerServiceImplTest {
             new Question("Вопрос4", "Ответ4"),
             new Question("Вопрос5", "Ответ5")
     );
-    @BeforeEach
-    public void beforeEach(){
-        when(questionService.getAll()).thenReturn(QUESTIONS);
-    }
+
 
 
     @ParameterizedTest
@@ -54,6 +51,7 @@ public class ExaminerServiceImplTest {
 
     @Test
     public void getQuestionsPositiveTest(){
+        when(questionService.getAll()).thenReturn(QUESTIONS);
         when(questionService.getRandomQestion()).thenReturn(
                 QUESTIONS.get(1),
                 QUESTIONS.get(4),
@@ -72,7 +70,7 @@ public class ExaminerServiceImplTest {
 
     public static Stream<Arguments> getQuestionsNegativeParams(){
         return Stream.of(
-                Arguments.of( -1),
+                Arguments.of(-1),
                 Arguments.of(QUESTIONS.size() +1),
                 Arguments.of(QUESTIONS.size() +100)
         );

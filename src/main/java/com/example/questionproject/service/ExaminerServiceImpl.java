@@ -20,7 +20,7 @@ public class ExaminerServiceImpl implements ExaminerService{
     @Override
     public Collection<Question> getQuestions(int amount){
 
-        if (amount <= 0 || amount > questionService.getAll().size()){
+        if (amount <=0 || amount > questionService.getAll().size()){
             throw new IncorectAmountOfQuestion();
         }
         Set<Question> questions = new HashSet<>();
