@@ -1,10 +1,10 @@
-package com.example.questionproject;
+package com.example.questionproject.service.impl;
 
 import com.example.questionproject.exeption.QestionAlredyExistsExeption;
 import com.example.questionproject.exeption.QuestionNotFoundExeption;
 import com.example.questionproject.model.Question;
 import com.example.questionproject.service.QuestionService;
-import com.example.questionproject.service.impl.JavaQestionService;
+import com.example.questionproject.service.impl.JavaQuestionService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class JavaQestionServiceTest {
-    public final QuestionService questionService = new JavaQestionService();
+    public final QuestionService questionService = new JavaQuestionService();
 
     @AfterEach
     public void  cleanUp(){

@@ -2,30 +2,43 @@ package com.example.questionproject.service;
 
 import com.example.questionproject.exeption.IncorectAmountOfQuestion;
 import com.example.questionproject.model.Question;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class ExaminerServiceImpl implements ExaminerService{
 
-    private final QuestionService questionService;
+    private final QuestionService javaQuestionService;
 
-    public ExaminerServiceImpl(QuestionService questionService) {
-        this.questionService = questionService;
+    private final QuestionService mathQuestionService;
+
+    private final Random random;
+    public ExaminerServiceImpl( QuestionService javaQuestionService,
+                               QuestionService mathQuestionService) {
+        this.javaQuestionService = javaQuestionService;
+        this.mathQuestionService = mathQuestionService;
+        this.random= new Random();
     }
+
 
     @Override
     public Collection<Question> getQuestions(int amount){
+        List<QuestionService> list = List.of(javaQuestionService,mathQuestionService);
 
-        if (amount <=0 || amount > questionService.getAll().size()){
+        int totalQuestions = list.stream()
+                .map(QuestionService::getAll)
+                .mapToInt(Collection::size)
+                .sum();
+
+
+        if (amount <=0 || amount > totalQuestions){
             throw new IncorectAmountOfQuestion();
         }
         Set<Question> questions = new HashSet<>();
         while (questions.size() < amount) {
-            questions.add(questionService.getRandomQestion());
+            questions.add(list.get(random.nextInt(list.size())).getRandomQestion());
             }
             return questions;
         }

@@ -1,4 +1,4 @@
-package com.example.questionproject;
+package com.example.questionproject.service.impl;
 
 import com.example.questionproject.exeption.IncorectAmountOfQuestion;
 import com.example.questionproject.model.Question;
