@@ -2,6 +2,8 @@ package com.example.questionproject.service;
 
 import com.example.questionproject.exeption.IncorectAmountOfQuestion;
 import com.example.questionproject.model.Question;
+import com.example.questionproject.service.impl.JavaQuestionService;
+import com.example.questionproject.service.impl.MathQuestionService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +13,10 @@ import java.util.*;
 public class ExaminerServiceImpl implements ExaminerService{
 
     private final QuestionService javaQuestionService;
-
     private final QuestionService mathQuestionService;
-
     private final Random random;
-    public ExaminerServiceImpl( QuestionService javaQuestionService,
-                               QuestionService mathQuestionService) {
+    public ExaminerServiceImpl( JavaQuestionService javaQuestionService,
+                               MathQuestionService mathQuestionService) {
         this.javaQuestionService = javaQuestionService;
         this.mathQuestionService = mathQuestionService;
         this.random= new Random();
@@ -25,7 +25,7 @@ public class ExaminerServiceImpl implements ExaminerService{
 
     @Override
     public Collection<Question> getQuestions(int amount){
-        List<QuestionService> list = List.of(javaQuestionService,mathQuestionService);
+        List<QuestionService> list = List.of(javaQuestionService, mathQuestionService);
 
         int totalQuestions = list.stream()
                 .map(QuestionService::getAll)

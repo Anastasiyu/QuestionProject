@@ -3,7 +3,7 @@ package com.example.questionproject.controller;
 import com.example.questionproject.model.Question;
 import com.example.questionproject.service.QuestionService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.Collection;
 

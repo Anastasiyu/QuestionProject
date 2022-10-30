@@ -1,12 +1,9 @@
 package com.example.questionproject.repository.impl;
 
 import com.example.questionproject.model.Question;
-import com.example.questionproject.repository.QuestionRepository;
+
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Repository
 public class MathQuestionRepository extends AbstractQuestionRepository {
